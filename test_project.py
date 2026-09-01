@@ -17,6 +17,15 @@ def test_fetch_articles():
 def test_fetch_articles_empty():
     assert project.fetch_articles([]) == []
 
+
+def test_display_articles_empty(capsys):
+    project.display_articles([])
+
+    output = capsys.readouterr().out
+
+    assert "找不到符合条件的文章。请尝试更换关键词或放宽最低年份。" in output
+
+
 def test_display_articles(capsys):
     articles = [
         {
