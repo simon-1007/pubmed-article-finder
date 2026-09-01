@@ -71,7 +71,7 @@ def fetch_articles(pmids):
 
 def display_articles(articles):
     if not articles:
-        print("找不到符合条件的文章。请尝试更换关键词或放宽最低年份。")
+        print("No articles found matching the criteria. Please try different keywords or relax the minimum year.")
         return
 
     for number, article in enumerate(articles, start=1):
