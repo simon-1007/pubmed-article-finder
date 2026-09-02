@@ -63,9 +63,12 @@ def fetch_articles(pmids):
     data = response.json()
 
     articles = []
-    for pmid in data["result"]["uids"]:
-        article = data["result"][pmid]
-        articles.append(article)
+    try:
+        for pmid in data["result"]["uids"]:
+            article = data["result"][pmid]
+            articles.append(article)
+    except KeyError:
+        print("Error: Unexpected response format from PubMed API.")
     return articles
 
 
