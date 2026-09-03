@@ -17,6 +17,15 @@ def test_fetch_articles():
 def test_fetch_articles_empty():
     assert project.fetch_articles([]) == []
 
+
+def test_display_articles_empty(capsys):
+    project.display_articles([])
+
+    output = capsys.readouterr().out
+
+    assert "No articles found matching the criteria. Please try different keywords or relax the minimum year." in output
+
+
 def test_display_articles(capsys):
     articles = [
         {

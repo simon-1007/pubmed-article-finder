@@ -63,15 +63,18 @@ def fetch_articles(pmids):
     data = response.json()
 
     articles = []
-    for pmid in data["result"]["uids"]:
-        article = data["result"][pmid]
-        articles.append(article)
+    try:
+        for pmid in data["result"]["uids"]:
+            article = data["result"][pmid]
+            articles.append(article)
+    except KeyError:
+        print("Error: Unexpected response format from PubMed API.")
     return articles
 
 
 def display_articles(articles):
     if not articles:
-        print("No articles founds. ")
+        print("No articles found matching the criteria. Please try different keywords or relax the minimum year.")
         return
 
     for number, article in enumerate(articles, start=1):
